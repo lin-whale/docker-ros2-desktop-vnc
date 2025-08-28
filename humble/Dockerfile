@@ -16,6 +16,7 @@
 # which is released under the Apache-2.0 license.
 
 FROM ubuntu:jammy-20250404
+# FROM ubuntu:jammy
 
 ARG TARGETPLATFORM
 LABEL maintainer="Tiryoh<tiryoh@gmail.com>"
@@ -51,7 +52,10 @@ RUN apt-get update && \
 
 # noVNC and Websockify
 RUN git clone https://github.com/AtsushiSaito/noVNC.git -b add_clipboard_support /usr/lib/novnc
+# COPY ./data/noVNC /usr/lib/novnc
+
 RUN pip install git+https://github.com/novnc/websockify.git@v0.10.0
+# RUN pip install websockify==0.10.0
 RUN ln -s /usr/lib/novnc/vnc.html /usr/lib/novnc/index.html
 
 # Set remote resize function enabled by default
